@@ -42,46 +42,46 @@ const App = () => {
 
   return (
     <div className="flex min-h-screen bg-[#F3F4F6]">
-      {/* ✅ Sidebar monté une seule fois, gère le responsive */}
+      {/*  Sidebar monté une seule fois, gère le responsive */}
       <Sidebar />
 
-      {/* ✅ Contenu principal */}
+      {/*  Contenu principal */}
       <main className="flex-1 overflow-auto p-6">
-        {/* ✅ Titre centré en mobile, une ligne en desktop + avatar fixe */}
+        {/*  Titre centré en mobile, une ligne en desktop + avatar fixe */}
 
         <div className="relative mb-6">
-          {/* ✅ Avatar toujours en haut à droite */}
+          {/*  Avatar toujours en haut à droite */}
           <div className="absolute top-0 right-0">
             <UserAvatar />
           </div>
 
-          {/* ✅ Titre centré en mobile, aligné à gauche en desktop */}
+          {/*  Titre centré en mobile, aligné à gauche en desktop */}
           <h1 className="text-3xl font-bold text-gray-800 leading-snug text-center lg:text-left pr-16">
             <span className="block lg:inline">Tableau de bord</span>
             <span className="block lg:inline"> administrateur</span>
           </h1>
         </div>
 
-        {/* ✅ Cartes KPI */}
+        {/*  Cartes KPI */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
           {kpis.map((kpi, i) => (
             <StatBlock key={i} {...kpi} />
           ))}
         </div>
 
-        {/* ✅ Section monitoring élargie sur desktop */}
+        {/*  Section monitoring élargie sur desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_400px] gap-6 mb-6 w-full">
           <RealtimeChart />
           <SecurityIndicators />
         </div>
 
-        {/* ✅ Section activité + utilisateurs côte à côte */}
+        {/*  Section activité + utilisateurs côte à côte */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           <RecentActivity />
           <NewUsersTable />
         </div>
 
-        {/* ✅ Dernière section : tickets de support */}
+        {/* Dernière section : tickets de support */}
         <div className="grid grid-cols-1 gap-6 mb-6">
           <SupportTickets />
         </div>

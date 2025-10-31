@@ -46,14 +46,12 @@ const priorityStyles: Record<Priority, { bg: string; text: string }> = {
 
 const SupportTickets = () => {
   return (
-    <div className="bg-white rounded-[12px] shadow-md p-6 w-full max-w-none">
-      
-      {/* ✅ Titre + filtres de priorité en haut */}
-      <div className="flex items-center justify-between mb-4">
+    <div className="bg-white rounded-[12px] shadow-md p-4 sm:p-6 w-full max-w-full">
+      {/* Titre + filtres */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
         <h2 className="text-lg font-bold text-gray-800">Tickets de support</h2>
 
-        {/* ✅ Filtres visuels avec pastilles et couleurs */}
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap gap-2">
           <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-red-100">
             <span className="w-2.5 h-2.5 rounded-full bg-red-500"></span>
             <span className="text-sm text-red-600 font-semibold">Élevée: 1</span>
@@ -69,10 +67,10 @@ const SupportTickets = () => {
         </div>
       </div>
 
-      {/* ✅ Tableau principal élargi */}
+      {/* Tableau responsive */}
       <div className="overflow-x-auto">
-        <table className="w-full text-[15px] text-left table-fixed">
-          <thead>
+        <table className="min-w-full w-full text-[15px] text-left border-collapse">
+          <thead className="hidden sm:table-header-group">
             <tr className="bg-[#F9FAFB] text-gray-500 font-normal">
               <th className="py-2 px-3 w-[35%]">Ticket</th>
               <th className="py-2 px-3 w-[15%] text-center">Priorité</th>
@@ -83,63 +81,52 @@ const SupportTickets = () => {
           </thead>
           <tbody className="divide-y divide-gray-200">
             {tickets.map((ticket, i) => {
-              // ✅ Récupération des couleurs selon la priorité
               const { bg, text } = priorityStyles[ticket.priority]
-
-              // ✅ Icône selon le statut
               const statusIcon =
                 ticket.status === "Ouvert"
                   ? <AlertTriangle className="w-4 h-4 mr-1" style={{ color: "#DC2626" }} />
                   : <Clock className="w-4 h-4 mr-1" style={{ color: "#854D0E" }} />
 
               return (
-                <tr
-                  key={i}
-                  className="text-gray-700 text-[16px] transition duration-200 hover:bg-gray-50"
-                >
-                  {/* ✅ Titre du ticket + nom de l'utilisateur */}
-                  <td className="py-3 px-3">
+                <tr key={i} className="text-gray-700 text-[16px] transition duration-200 hover:bg-gray-50 block sm:table-row">
+                  {/* Ticket info */}
+                  <td className="py-2 px-3 block sm:table-cell">
                     <p className="font-semibold">{ticket.title}</p>
                     <p className="text-xs text-gray-500">{ticket.user}</p>
                   </td>
 
-                  {/* ✅ Priorité avec fond et couleur */}
-                  <td className="py-3 px-3 text-center">
+                  {/* Priorité */}
+                  <td className="py-2 px-3 text-center block sm:table-cell">
                     <span
-                      className="px-2 py-1 rounded-full text-xs font-semibold"
+                      className="px-2 py-1 rounded-full text-xs font-semibold inline-block mt-1 sm:mt-0"
                       style={{ backgroundColor: bg, color: text }}
                     >
                       {ticket.priority}
                     </span>
                   </td>
 
-                  {/* ✅ Statut avec icône */}
-                 <td className="py-3 px-3 text-center">
-                    <span className="inline-flex items-center gap-1 text-sm text-gray-700 font-medium">
-                        {statusIcon}
-                        {ticket.status}
+                  {/* Statut */}
+                  <td className="py-2 px-3 text-center block sm:table-cell">
+                    <span className="inline-flex items-center gap-1 text-sm text-gray-700 font-medium mt-1 sm:mt-0">
+                      {statusIcon}
+                      {ticket.status}
                     </span>
-                    </td>
-                    
-                  {/* ✅ Temps avec icône horloge */}
-                  <td className="py-3 px-3 text-center text-sm text-gray-600">
-                    <span className="inline-flex items-center justify-center gap-1">
+                  </td>
+
+                  {/* Temps */}
+                  <td className="py-2 px-3 text-center text-sm text-gray-600 block sm:table-cell">
+                    <span className="inline-flex items-center justify-center gap-1 mt-1 sm:mt-0">
                       <Clock className="w-4 h-4" style={{ color: "#4B5563" }} />
                       {ticket.time}
                     </span>
                   </td>
 
-                  {/* ✅ Actions : Répondre (orange) + Assigner (gris) */}
-                  <td className="py-3 px-3 text-center">
-                    <button
-                      className="text-sm font-medium mr-4 hover:underline"
-                      style={{ color: "#FF6600" }}
-                    >
-                      Répondre
-                    </button>
-                    <button className="text-sm text-gray-600 hover:underline font-medium">
-                      Assigner
-                    </button>
+                  {/* Actions */}
+                  <td className="py-2 px-3 text-center block sm:table-cell">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mt-1 sm:mt-0">
+                      <button className="text-sm font-medium hover:underline" style={{ color: "#FF6600" }}>Répondre</button>
+                      <button className="text-sm text-gray-600 hover:underline font-medium">Assigner</button>
+                    </div>
                   </td>
                 </tr>
               )
@@ -148,7 +135,7 @@ const SupportTickets = () => {
         </table>
       </div>
 
-      {/* ✅ Bouton bas "Voir tous les tickets" */}
+      {/* Bouton bas */}
       <div className="mt-6 flex justify-center">
         <button className="text-base text-[#FF6600] font-medium hover:underline flex items-center gap-1">
           Voir tous les tickets <ChevronRight className="w-4 h-4" style={{ color: "#FF6600" }} />
@@ -159,3 +146,6 @@ const SupportTickets = () => {
 }
 
 export default SupportTickets
+
+
+

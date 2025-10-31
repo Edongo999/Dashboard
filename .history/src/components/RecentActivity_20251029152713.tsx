@@ -5,14 +5,14 @@ import { useState } from "react"
 import landry from "../assets/images/landry.png"
 import landry1 from "../assets/images/landry1.jpg"
 import landry2 from "../assets/images/landry2.jpg"
-import landry4 from "../assets/images/landry4.jpg"
+import landry3 from "../assets/images/landry3.jpg"
 
 // ✅ Liste des transactions avec images importées
 const transactions = [
   { name: "Marie Dupont", type: "Dépôt", amount: "+1 200,00 €", status: "Réussi", avatar: landry },
   { name: "Jean Lefebvre", type: "Retrait", amount: "-450,00 €", status: "Réussi", avatar: landry1 },
   { name: "Camille Roux", type: "Transfert", amount: "-1 050,00 €", status: "En attente", avatar: landry2 },
-  { name: "Antoine Moreau", type: "Dépôt", amount: "+2 500,00 €", status: "Réussi", avatar: landry4 }
+  { name: "Antoine Moreau", type: "Dépôt", amount: "+2 500,00 €", status: "Réussi", avatar: landry3 }
 ]
 
 const RecentActivity = () => {
